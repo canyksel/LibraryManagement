@@ -1,0 +1,84 @@
+﻿@model System.Collections.Generic.List<LibraryManagement.Entities.Concrete.Book>
+@using LibraryManagement.MvcWebUI.HtmlHelpers
+
+@{
+    ViewBag.Title = "/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <table id="todoList" class="table table-bordered table-responsive table-hover" width="100%">
+
+        <thead class="thead-dark">
+            <tr style="border-style:solid;border-width:1px">
+                <th class="th-sm" style="border-width:1px">
+                    Kitap Adı
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Yazar Adı
+                </th>
+                <th class="th-sm" style="border-width:1px; overflow-x:auto">
+                    Yayınevi
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Yayın Tarihi
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Dil
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Baskı
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Fiyat
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Sayfa Sayısı
+                </th>
+                <th class="th-sm" style="border-width:1px">
+                    Stok Durumu
+                </th>
+                <th class="th-sm" style="border-width:1px; color:red; text-align:center">
+                    İşlem
+                </th>
+                <th class="th-sm" style="border-width:1px; color:red; text-align:center">
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        @foreach (var book in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@book.BookName</td>
+                    <td>@book.AuthorName</td>
+                    <td>@book.PublisherName</td>
+                    <td>@book.PublishDate.ToString("dd.MM.yyyy")</td>
+                    <td>@book.Language</td>
+                    <td>@book.Edition</td>
+                    <td>@book.BookCost</td>
+                    <td>@book.PageNumber</td>
+                    <td>@Html.YesNo(@book.InStock)</td>
+                    <td> <a href="@Url.Action("EditBook", "Books", new { id = book.BookId })" class="btn btn-warning" style="padding: 2px">Düzenle</a></td>
+                    <td> <a href="@Url.Action("GetDetails", "Books", new { id = book.BookId })" class="btn btn-info" style="padding:2px">Kitap Detayı</a></td>
+                </tr>
+            </tbody>
+
+        }
+
+    </table>
+    <div>
+        <a href="@Url.Action("CreateNew", "Books")" class="btn btn-success" style="width:180px">Kitap Ekle</a>
+    </div>
+
+
+</body>
+</html>
+
+@*<td><a href="@Url.Action("CreateNew","TaskList")" class="btn btn-success">Görev Ekle</a></td>
+    <td><a href="@Url.Action("Edit","TaskList", new {taskId = taskItem.TaskId})" class="btn btn-warning">Görev Düzenle</a></td>
+    <td><a href="@Url.Action("Delete","TaskList", new {taskId = taskItem.TaskId})" class="btn btn-danger">Görev Sil</a></td>*@

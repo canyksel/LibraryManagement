@@ -1,0 +1,154 @@
+﻿@model  LibraryManagement.Entities.Concrete.Book
+@using LibraryManagement.MvcWebUI.HtmlHelpers
+
+@{
+    ViewBag.Title = "CreateNew";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        <div class="form-group" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px">
+            <div class="form-group">
+                <label for="newBookName">Kitap Adı</label>
+                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control", id = "newBookName", placeholder = "Eklemek kitap adını giriniz" } })
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="newAuthorId">Yazar ID</label>
+                    @Html.TextBoxFor(model => model.AuthorId, htmlAttributes: new { @class = "form-control", id = "newAuthorId" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="newAuthorName">Yazar Adı</label>
+                    @Html.EditorFor(model => model.AuthorName, new { htmlAttributes = new { @class = "form-control", id = "newAuthorName", placeholder = "Eklemek istediğiniz yazar ismini giriniz" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="newType">Tür</label>
+                    @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", id = "newType", placeholder = "Tür" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="newPublisherName">Yayınevi</label>
+                    @Html.EditorFor(model => model.PublisherName, new { htmlAttributes = new { @class = "form-control", id = "newPublisherName", placeholder = "Yayınevi adını giriniz" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="newPublishDate">Yayınlanma Tarihi</label>
+                    @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control", id = "newPublishDate", @type = "date" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="newLanguage">Dil</label>
+                    @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control", id = "newLanguage", placeholder = "Dil" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="newEdition">Baskı</label>
+                    @Html.EditorFor(model => model.Edition, new { htmlAttributes = new { @class = "form-control", id = "newEdition", placeholder = "Baskı" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="newBookCost">Fiyat</label>
+                    @Html.EditorFor(model => model.BookCost, new { htmlAttributes = new { @class = "form-control", id = "newBookCost" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="newPageNumber">Sayfa Sayısı</label>
+                    @Html.EditorFor(model => model.PageNumber, new { htmlAttributes = new { @class = "form-control", id = "newPageNumber", placeholder = "Sayfa sayısını giriniz" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="newQuantity">Stok Adedi</label>
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", id = "newQuantity" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="newInStock">Stok Durumu(Evet/Hayır)</label>
+                    @Html.CheckBoxFor(model => model.InStock, htmlAttributes: new { @class = "form-controller", style = "height:20px;width:20px;margin-left:5px;", id = "newInStock" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="newBookDescription">Kitap Özeti</label>
+                @Html.TextAreaFor(model => model.BookDescription, htmlAttributes: new { style = "height:270px;resize:none", @class = "form-control", id = "newBookDescription" })
+            </div>
+            <br />
+            <div><button type="submit" class="btn btn-success" id="btnAdd" style="width:280px" onclick="location.href = '@Url.Action("CreateNew","Books")'">Kitabı Kaydet</button></div>
+            <a href='@Url.Action("Index","Books")' class="btn btn-default" style="width:280px; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:3px" title="Listeye geri dön">
+                Listeye Geri Dön
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </a>
+        </div>
+    </form>
+}
+
+
+
+<!--<form>
+    <div class="form-group" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px">
+        <div class="form-group">
+            <label for="newBookName">Kitap Adı</label>
+            @*<input type="text" class="form-control" id="newBookName" placeholder="Eklemek kitap adını giriniz" @Html.TextBoxFor(model => model.BookName) />*@
+        <!--</div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="newAuthorId">Yazar ID</label>
+                @*<input type="text" class="form-control" id="newAuthorId" placeholder="Yazar Id giriniz" @Html.TextBoxFor(model => model.AuthorId) />*@
+            <!--</div>
+            <div class="form-group col-md-4">
+                <label for="newAuthorName">Yazar Adı</label>
+                @*<input type="text" class="form-control" id="newAuthorName" placeholder="Eklemek istediğiniz yazar ismini giriniz" @Html.TextBoxFor(model => model.AuthorName) />*@
+            <!--</div>
+            <div class="form-group col-md-4">
+                <label for="newType">Tür</label>
+                <input type="text" class="form-control" id="newType" placeholder="Tür" @Html.TextBoxFor(model => model.Type) />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="newPublisherName">Yayınevi</label>
+                <input type="text" class="form-control" id="newPublisherName" placeholder="Yayınevi adını giriniz" @Html.TextBoxFor(model => model.PublisherName) />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="newPublishDate">Yayınlanma Tarihi</label>
+                <input type="date" class="form-control" id="newPublishDate" style="background-color:lightgrey" @Model.PublishDate />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="newLanguage">Dil</label>
+                <input type="text" class="form-control" id="newLanguage" placeholder="Dil" @Model.Language />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="newEdition">Baskı</label>
+                <input type="text" class="form-control" id="newEdition" @Model.Edition />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="newBookCost">Fiyat</label>
+                <input type="text" class="form-control" id="newBookCost" placeholder="Satış ücretini giriniz" @Model.BookCost />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="newPageNumber">Sayfa Sayısı</label>
+                <input type="text" class="form-control" id="newPageNumber" placeholder="Sayfa sayısını giriniz" @Model.PageNumber />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="newQuantity">Stok Adedi</label>
+                <input type="text" class="form-control" id="newQuantity" placeholder="Satış ücretini giriniz" @Model.Quantity />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="newInStock" class="container-fluid">Stok Durumu(Evet/Hayır)</label>
+                <input type="checkbox" class="checkbox-inline" id="newInStock" style="height:30px;width:30px" @Html.YesNo(@Model.InStock) />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="newBookDescription">Kitap Özeti</label>
+            <textarea class="form-control" id="newBookDescription" style="height:270px;resize:none" @Model.BookDescription></textarea>
+        </div>
+        <br />
+        <div><button type="submit" class="btn btn-success" id="btnAdd" style="width:280px" onclick="location.href = '@Url.Action("CreateNew","Books")'">Kitabı Kaydet</button></div>
+        <a href='@Url.Action("Index","Books")' class="btn btn-default" style="width:280px; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px" title="Listeye geri dön">
+            Listeye Geri Dön
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+        </a>
+    </div>
+</form>-->

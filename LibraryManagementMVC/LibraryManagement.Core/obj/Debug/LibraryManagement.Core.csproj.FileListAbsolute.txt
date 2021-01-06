@@ -1,0 +1,12 @@
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\LibraryManagement.Core.dll.config
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\LibraryManagement.Core.dll
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\LibraryManagement.Core.pdb
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\EntityFramework.dll
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\EntityFramework.xml
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\obj\Debug\LibraryManagement.Core.csproj.CoreCompileInputs.cache
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\obj\Debug\LibraryManagement.Core.csproj.CopyComplete
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\obj\Debug\LibraryManagement.Core.dll
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\obj\Debug\LibraryManagement.Core.pdb
+C:\Users\Can-PC\source\repos\LibraryManagementMVC\LibraryManagement.Core\obj\Debug\LibraryManagement.Core.csprojAssemblyReference.cache
