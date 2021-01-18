@@ -1,0 +1,50 @@
+﻿@model LibraryManagement.Entities.Concrete.BooksLend
+@{
+    ViewBag.Title = "LendBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Ödünç Ver</h2>
+
+<table id="lendList" class="table table-bordered table-responsive table-hover" width="100%">
+    <thead class="thead-dark">
+        <tr style="border-style:solid;border-width:1px">
+            <th class="th-sm" style="border-width:1px">
+                Kitap Adı
+            </th>
+            <th class="th-sm" style="border-width:1px">
+                Yazar Adı
+            </th>
+            <th class="th-sm" style="border-width:1px">
+                Kitabı Alan Kişi(Ad-Soyad)
+            </th>
+            <th class="th-sm" style="border-width:1px">
+                Miktar(Adet)
+            </th>
+            <th class="th-sm" style="border-width:1px; color:red; text-align:center">
+                İşlem
+            </th>
+        </tr>
+    </thead>
+    @foreach (var line in Model.Lines)
+    {
+
+        <tr>
+            <td>@line.Book.BookName</td>
+            <td>@line.Book.AuthorName</td>
+            <td>Girilmemiş</td>
+            <td>@line.Quantity</td>
+            @using (Html.BeginForm("RemoveBookFromLendList", "LendBooks"))
+            {
+                @Html.Hidden("id", line.Book.BookId)
+                @*<td><input type="submit" value="Listeden Çıkar" /></td>*@
+                <td><button type="submit" class="btn btn-danger">Listeden Çıkar</button></td>
+
+            }
+        </tr>
+
+    }
+</table>
+<div>
+    <a href="@Url.Action("Index", "Books")" class="btn btn-success" style="width:180px">Listeye Geri Dön</a>
+</div>

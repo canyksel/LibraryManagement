@@ -1,0 +1,122 @@
+﻿@model LibraryManagement.Entities.Concrete.Book
+
+@{
+    ViewBag.Title = "EditBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="display:inline-flex;margin-bottom:10px">
+    <div class="row" style="display:inline-flex">
+        <div class="column">
+            <h2 style="color:orange; padding:3px">Kitabı Düzenle</h2>
+        </div>
+        <div class="column">
+            <img src="~/Images/icons/edit-icon.png" class="img-responsive" style="position:center; padding:12px" />
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        <div class="form-group" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px; border-radius:25px">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.BookId)
+
+            <div class="form-group">
+                <label for="editBookName">Kitap Adı</label>
+                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control", id = "editBookName" } })
+                @Html.ValidationMessageFor(model => model.BookName, "", new { @class = "text-danger" })
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="editAuthorId">Yazar ID</label>
+                    @Html.TextBoxFor(model => model.AuthorId, htmlAttributes: new { @class = "form-control", id = "editAuthorId" })
+                    @Html.ValidationMessageFor(model => model.AuthorId, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="editAuthorName">Yazar Adı</label>
+                    @Html.EditorFor(model => model.AuthorName, new { htmlAttributes = new { @class = "form-control", id = "editAuthorName" } })
+                    @Html.ValidationMessageFor(model => model.AuthorName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="editType">Tür</label>
+                    @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", id = "editType" } })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="editPublisherName">Yayınevi</label>
+                    @Html.EditorFor(model => model.PublisherName, new { htmlAttributes = new { @class = "form-control", id = "editPublisherName" } })
+                    @Html.ValidationMessageFor(model => model.PublisherName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="editPublishDate">Yayınlanma Tarihini Düzenle: <small style="color:red">@Model.PublishDate.ToShortDateString() (Mevcut Tarih)</small></label>
+                    @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "editPublishDate" } })
+                    @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="editLanguage">Dil</label>
+                    @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control", id = "editLanguage" } })
+                    @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="editEdition">Baskı</label>
+                    @Html.EditorFor(model => model.Edition, new { htmlAttributes = new { @class = "form-control", id = "editEdition" } })
+                    @Html.ValidationMessageFor(model => model.Edition, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="editBookCost">Fiyat</label>
+                    @Html.EditorFor(model => model.BookCost, new { htmlAttributes = new { @class = "form-control", id = "editBookCost" } })
+                    @Html.ValidationMessageFor(model => model.BookCost, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="editPageNumber">Sayfa Sayısı</label>
+                    @Html.EditorFor(model => model.PageNumber, new { htmlAttributes = new { @class = "form-control", id = "editPageNumber" } })
+                    @Html.ValidationMessageFor(model => model.PageNumber, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="editQuantity">Stok Adedi</label>
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", id = "editQuantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="editInStock">Stok Durumu(Evet/Hayır)</label>
+                    @Html.CheckBoxFor(model => model.InStock, htmlAttributes: new { @class = "form-controller", style = "height:20px;width:20px;margin-left:5px;", id = "editInStock" })
+                    @Html.ValidationMessageFor(model => model.InStock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="editBookDescription">Kitap Özeti</label>
+                @Html.TextAreaFor(model => model.BookDescription, htmlAttributes: new { style = "height:270px;resize:none", @class = "form-control", id = "editBookDescription" })
+                @Html.ValidationMessageFor(model => model.BookDescription, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><button type="submit" class="btn btn-warning" id="btnEdit" style="width:100%" onclick="location.href = '@Url.Action("EditBook","Books")'">Kitabı Düzenle</button></div>
+                    <a href='@Url.Action("Index","Books")' class="btn btn-default" style="width:100%; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:10px" title="Listeye geri dön">
+                        Listeye Geri Dön
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            @*<div><button type="submit" class="btn btn-warning" id="btnEdit" style="width:280px" onclick="location.href = '@Url.Action("EditBook", "Books")'">Kitabı Düzenle</button></div>
+            <a href='@Url.Action("Index", "Books")' class="btn btn-default" style="width:280px; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:10px" title="Listeye geri dön">
+                Listeye Geri Dön
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </a>
+        </div>*@
+
+</form>
+}
+

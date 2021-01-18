@@ -1,0 +1,109 @@
+﻿@model LibraryManagement.Entities.Concrete.Member
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="display:inline-flex;margin-bottom:10px">
+    <div class="row" style="display:inline-flex">
+        <div class="column">
+            <h2 style="color:mediumaquamarine; padding:3px">Üye Ekle</h2>
+        </div>
+        <div class="column">
+            <img src="~/Images/icons/add-user.png" class="img-responsive" style="position:center; padding:12px" />
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("CreateNewMember", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="modal-content" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px;border-radius:25px; background-color:#F1F1F1;opacity:0.9686274509803922;">
+            <div class="row">
+                <div class="form-group col-md-12 ">
+                    <label style="font-size: 15px; color:red">
+                        Üye Kayıt işlemini eksiksiz doldurarak kayıt işlemini tamamlayınız !
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="newFirstName">İsim</label>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "Off", id = "newFirstName" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="newLastName">Soyisim</label>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "Off", id = "newLastName" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="newContactNo">Telefon Numarası</label>
+                    @Html.TextBoxFor(model => model.ContactNo, htmlAttributes: new { @class = "form-control", id = "newContactNo", placeholder = "05XX XXX XX XX", maxlength = 11, autocomplete = "Off" })
+                    @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="newBirthDate">Doğum Tarihi</label>
+                    @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", id = "newBirthDate", type = "date", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="newEMail">Mail Adresi</label>
+                    @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control", id = "newEMail", placeholder = "Mail Adresi", type = "mail", autocomplete = "off" } })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="newCity">Şehir</label>
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", id = "newEMail", autocomplete = "off" } })
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="newGender">Cinsiyet</label>
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", id = "newGender", autocomplete = "off", value = "Cinsiyeti Giriniz" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="newIsActive">Yeni Üye mi ?</label>
+                    @Html.CheckBoxFor(model => model.IsActive, htmlAttributes: new { @class = "form-controller", style = "height:20px;width:20px;margin-left:5px;", id = "newIsActive", autocomplete = "off" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="newNotes">Üye Notları (İsteğe Bağlı) </label>
+                @Html.TextAreaFor(model => model.Notes, htmlAttributes: new { style = "height:100px;resize:none", @class = "form-control", id = "newNotes", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                <label for="newAdress">Adres</label>
+                @Html.TextAreaFor(model => model.Address, htmlAttributes: new { style = "height:150px;resize:none", @class = "form-control", id = "newAdress", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                <label for="newMemberPhoto">Üye Fotoğrafı</label>
+                @*@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="file" name="file" required="required" id="file" />
+                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <input type="submit" value="KAYDET" class="btn btn-success" style="width:100%;background-color:#ffbf00;border: 2px solid transparent !important;" />
+                    <a href='@Url.Action("MemberList","Members")' class="btn btn-default" style="width:100%; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:10px" title="Listeye geri dön">
+                        Listeye Geri Dön
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
+
+
+<!--<div class="form-group">
+    @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">-->
+@*@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })*@
+<!--<input type="file" name="file" required="required" id="file" />
+        @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+    </div>
+</div>-->

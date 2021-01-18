@@ -1,0 +1,108 @@
+﻿@model LibraryManagement.Entities.Concrete.Book
+
+@{
+    ViewBag.Title = "DeleteBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="display:inline-flex;margin-bottom:10px">
+    <div class="row" style="display:inline-flex">
+        <div class="column">
+            <h2 style="color:orange; padding:3px">Kitabı Sil</h2>
+        </div>
+        <div class="column">
+            <img src="~/Images/icons/delete-icon.png" class="img-responsive" style="position:center; padding:12px" />
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="form-group" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px; border-radius:25px">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.BookId)
+
+            <div class="form-group">
+                <label for="deleteBookName">Kitap Adı</label>
+                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control", id = "deleteBookName", disabled = "" } })
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="deleteAuthorId">Yazar ID</label>
+                    @Html.TextBoxFor(model => model.AuthorId, htmlAttributes: new { @class = "form-control", id = "deleteAuthorId", disabled = "" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="deleteAuthorName">Yazar Adı</label>
+                    @Html.EditorFor(model => model.AuthorName, new { htmlAttributes = new { @class = "form-control", id = "deleteAuthorName", disabled = "" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="deleteType">Tür</label>
+                    @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control", id = "deleteType", disabled = "" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="deletePublisherName">Yayınevi</label>
+                    @Html.EditorFor(model => model.PublisherName, new { htmlAttributes = new { @class = "form-control", id = "deletePublisherName", disabled = "" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="deletePublishDate">Yayınlanma Tarihi</label>
+                    @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control", id = "deletePublishDate", disabled = "" } })
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="deleteLanguage">Dil</label>
+                    @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control", id = "deleteLanguage", disabled = "" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="deleteEdition">Baskı</label>
+                    @Html.EditorFor(model => model.Edition, new { htmlAttributes = new { @class = "form-control", id = "deleteEdition", disabled = "" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="deleteBookCost">Fiyat</label>
+                    @Html.EditorFor(model => model.BookCost, new { htmlAttributes = new { @class = "form-control", id = "deleteBookCost", disabled = "" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="deletePageNumber">Sayfa Sayısı</label>
+                    @Html.EditorFor(model => model.PageNumber, new { htmlAttributes = new { @class = "form-control", id = "deletePageNumber", disabled = "" } })
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="deleteQuantity">Stok Adedi</label>
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", id = "deleteQuantity", disabled = "" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="deleteInStock">Stok Durumu(Evet/Hayır)</label>
+                    @Html.CheckBoxFor(model => model.InStock, htmlAttributes: new { @class = "form-controller", style = "height:20px;width:20px;margin-left:5px;", id = "deleteInStock", disabled = "" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="deletetBookDescription">Kitap Özeti</label>
+                @Html.TextAreaFor(model => model.BookDescription, htmlAttributes: new { style = "height:270px;resize:none", @class = "form-control", id = "deleteBookDescription", disabled = "" })
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><button type="submit" class="btn btn-danger" id="btnDelete" style="width:100%" onclick="location.href = '@Url.Action("DeleteBook","Books")'">Kitabı Sil</button></div>
+                    <a href='@Url.Action("Index","Books")' class="btn btn-default" style="width:100%; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:10px" title="Listeye geri dön">
+                        Listeye Geri Dön
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            @*<div><button type="submit" class="btn btn-danger" id="btnDelete" style="width:280px" onclick="location.href = '@Url.Action("DeleteBook", "Books")'">Kitabı Sil</button></div>
+            <a href='@Url.Action("Index", "Books")' class="btn btn-default" style="width:280px; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px;margin-top:10px" title="Listeye geri dön">
+                Listeye Geri Dön
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </a>
+        </div>*@
+
+    </form>
+}

@@ -1,0 +1,77 @@
+﻿@model LibraryManagement.Entities.Concrete.Member
+@using LibraryManagement.MvcWebUI.HtmlHelpers
+@{
+    ViewBag.Title = "MemberDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group" style="margin-top:10px">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="bookName">Adı-Soyadı</label>
+                <h6><b>@Model.FirstName - @Model.LastName </b></h6>
+                <img src="@Url.Content(Model.ImagePath)" alt="Not Found" width="270" height="350" />
+            </div>
+
+            <div class="col-md-9" style="border-style: solid; border-color: #937341; border-width:1.75px;padding:10px">
+
+                <div class="form-group">
+                    <label for="FirstName">Adı</label>
+                    <div class="form-control" id="FirstName">@Model.FirstName</div>
+                </div>
+                <div class="form-group">
+                    <label for="LastName">Soyadı</label>
+                    <div class="form-control" id="FirstName">@Model.LastName</div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="PhoneNumber">Telefon Numarası </label>
+                        <div class="form-control" id="PhoneNumber">@Model.ContactNo</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="BirthDate">Doğum Tarihi</label>
+                        <div class="form-control" id="BirthDate">@Model.BirthDate.ToShortDateString()</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="EMail">Mail Adresi</label>
+                        <div class="form-control" id="EMail">@Model.EMail</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="City">Şehir</label>
+                        <div class="form-control" id="City">@Model.City</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Gender">Cinsiyet</label>
+                        <div class="form-control" id="Gender">@Model.Gender</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="IsActive">Öğrenci Durumu</label>
+                        <div class="form-control" id="IsActive">@Html.StudentOrNot(@Model.IsActive)</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Notes">Notlar</label>
+                    <div class="form-control" id="Notes" style="height:100px">@Model.Notes</div>
+                </div>
+                <div class="form-group">
+                    <label for="Address">Adresi</label>
+                    <div class="form-control" id="Address" style="height:150px">@Model.Address</div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <a href='@Url.Action("MemberList","Members")' class="btn" style="width:100%; text-align:center; border-style:solid; border-color:#937341; border-width:0.5px; color:#fff; background-color:#0A77FA" title="Listeye geri dön">
+                            Listeye Geri Dön
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
